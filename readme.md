@@ -13,9 +13,11 @@ All pretty basic really.
  * @param {!express:Request} req HTTP request context.
  * @param {!express:Response} res HTTP response context.
  */
-exports.headDump = (req, res) => {
+exports.headerDump = (req, res) => {
   const head = JSON.stringify(req.headers)
-  res.status(200).send(head);
+  delete head['if-none-match']
+  delete head['x-appengine-default-version-hostname']
+  res.status(200).send(head)
 };
 ```
 
@@ -38,3 +40,5 @@ Thank you to these projects for thier great work! I appreciate you.
 - [moment](https://www.npmjs.com/package/moment)
 - [nedb](https://www.npmjs.com/package/nedb) & [nedb-promise](https://www.npmjs.com/package/nedb-promise)
 - [postmark](https://postmarkapp.com), [node client lib](https://www.npmjs.com/package/postmark)
+
+Get off sendgrid, use [Postmark](https://postmarkapp.com), they are so much better. Yeah, more of a hasstle to get started with, but to me that's worth it as it keeps the bad players off their service.
