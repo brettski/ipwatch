@@ -54,13 +54,14 @@ axios.get(endpoint)
           }).then(d => dlog('insterted %o', d));
         }
       })
+    } else {
+      client.sendEmail({
+        From: emailfrom,
+        To: emailto,
+        Subject: `No repsponse: from endpoint ipwatch`,
+        TextBody: `No response for ip check at ${moment().format()}\nendpoint: ${endpoint}`,
+      })
     }
-    client.sendEmail({
-      From: emailfrom,
-      To: emailto,
-      Subject: `No repsponse: from endpoint ipwatch`,
-      TextBody: `No response for ip check at ${moment().format()}\nendpoint: ${endpoint}`,
-    })
     dlog('this %o', response.data['x-forwarded-for'])
   })
   .catch((error) => {
