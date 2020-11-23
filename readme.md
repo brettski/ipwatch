@@ -32,7 +32,7 @@ Uses nedb and shouldn't grow large as it will only have as many records as IP's 
 
 ## THANK YOU
 
-Thank you to these projects for thier great work! I appreciate you.
+Thank you to these projects for their great work! I appreciate you.
 
 - [axios](https://www.npmjs.com/package/axios)
 - [debug](https://www.npmjs.com/package/debug)
@@ -41,4 +41,8 @@ Thank you to these projects for thier great work! I appreciate you.
 - [nedb](https://www.npmjs.com/package/nedb) & [nedb-promise](https://www.npmjs.com/package/nedb-promise)
 - [postmark](https://postmarkapp.com), [node client lib](https://www.npmjs.com/package/postmark)
 
-Get off sendgrid, use [Postmark](https://postmarkapp.com), they are so much better. Yeah, more of a hasstle to get started with, but to me that's worth it as it keeps the bad players off their service.
+Get off sendgrid, use [Postmark](https://postmarkapp.com), they are so much better. Yeah, more of a hassle to get started with, but to me that's worth it as it keeps the bad players off their service.
+
+## Installation
+
+In a nutshell it's all manual. A little embarrassing seeing that I have spent much of my career automating all the things.
