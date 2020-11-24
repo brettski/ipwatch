@@ -41,8 +41,30 @@ Thank you to these projects for their great work! I appreciate you.
 - [nedb](https://www.npmjs.com/package/nedb) & [nedb-promise](https://www.npmjs.com/package/nedb-promise)
 - [postmark](https://postmarkapp.com), [node client lib](https://www.npmjs.com/package/postmark)
 
-Get off sendgrid, use [Postmark](https://postmarkapp.com), they are so much better. Yeah, more of a hassle to get started with, but to me that's worth it as it keeps the bad players off their service.
+Get off SendGrid, use [Postmark](https://postmarkapp.com), they are so much better. Yeah, more of a hassle to get started with, but to me that's worth it as it keeps the bad players off their service. Go check them out if you have a moment.
 
 ## Installation
 
 In a nutshell it's all manual. A little embarrassing seeing that I have spent much of my career automating all the things.
+
+### Environment
+
+```sh
+ENDPOINT_CHK=https://example.com
+POSTMARK_TOKEN=--token-value--
+DEBUG=brettski:*
+EMAIL_TO=
+EMAIL_FROM=
+```
+
+Using Postmark for email. I really like their service and they care about deliverability of their clients. Check them out if you have a moment.
+
+`ENDPOINT_CHK` is the endpoint of the function code. There is no file for the function at this time as it's really straight forward. Simply apply `GCP Function` listed above into a gcp function or even a CloudFlare worker.
+
+`server.js` can be run anywhere there is node 10+ and write access to it's folder for the db file. This needs to run from somewhere within your network, calling out to the internet so the function can relay back your IP for recording. 
+
+I have this running on my home Synology using a scheduled task to execute the node file. It does the job. 
+
+## In Use
+
+So earlier this our ISP sent a 'reset' code to fix something. It changed the IP being used and an email was sent as hoped. 😅 We were able to change references to keep cross location services running. 
