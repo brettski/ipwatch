@@ -16,7 +16,7 @@
   "author": "Brett Slaski",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
     "moment": "^2.26.0",
