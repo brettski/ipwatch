@@ -1,6 +1,6 @@
 {
   "name": "ipwatch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A script to alert when IP changes",
   "main": "index.js",
   "scripts": {
@@ -16,11 +16,11 @@
   "author": "Brett Slaski",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.0",
-    "debug": "^4.3.1",
-    "dotenv": "^8.2.0",
-    "moment": "^2.26.0",
-    "nedb-promise": "^2.0.1",
-    "postmark": "^2.6.0"
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "moment": "^2.29.1",
+    "nedb-promises": "^5.0.2",
+    "node-fetch": "^2.6.6",
+    "postmark": "^2.7.8"
   }
 }
