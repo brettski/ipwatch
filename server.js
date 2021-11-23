@@ -1,6 +1,6 @@
 require('dotenv').config();
-const Datastore = require('nedb-promise')
-const axios = require('axios');
+const Datastore = require('nedb-promises')
+const fetch = require('node-fetch');
 const moment = require('moment');
 const postmark = require('postmark');
 const debug = require('debug');
@@ -13,17 +13,18 @@ const emailto = process.env.EMAIL_TO;
 const emailfrom = process.env.EMAIL_FROM;
 const client = new postmark.Client(postmarktoken);
 
-const db = Datastore({
+const db = Datastore.create({
   filename: './db.data',
   autoload: true,
   timestampData: true,
 })
 
-axios.get(endpoint)
+fetch(endpoint)
+  .then(res => res.json())
   .then(response => {
     let curip = '';
-    if (response && response.data && response.data['x-forwarded-for']) {
-      curip = response.data['x-forwarded-for'];
+    if (response && response['x-forwarded-for']) {
+      curip = response['x-forwarded-for'];
       db.findOne({
         ip: curip,
       }). then (result => {
@@ -49,7 +50,7 @@ axios.get(endpoint)
           })
           db.insert({
             timestamp: moment().format(),
-            ip: response.data['x-forwarded-for'],
+            ip: response['x-forwarded-for'],
             seen: 1,
           }).then(d => dlog('insterted %o', d));
         }
@@ -62,7 +63,7 @@ axios.get(endpoint)
         TextBody: `No response for ip check at ${moment().format()}\nendpoint: ${endpoint}`,
       })
     }
-    dlog('this %o', response.data['x-forwarded-for'])
+    dlog('this %o', response['x-forwarded-for'])
   })
   .catch((error) => {
     console.error('that shit wasn\'t right', error);
