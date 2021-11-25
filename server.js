@@ -4,13 +4,14 @@ const fetch = require('node-fetch');
 const moment = require('moment');
 const postmark = require('postmark');
 const debug = require('debug');
+const envConfig = require('./envConfig');
 
 dlog = debug('brettski:ipwatch');
 
-const endpoint = process.env.ENDPOINT_CHK;
-const postmarktoken = process.env.POSTMARK_TOKEN;
-const emailto = process.env.EMAIL_TO;
-const emailfrom = process.env.EMAIL_FROM;
+const endpoint = envConfig.endpoint;
+const postmarktoken = envConfig.postmark.token;
+const emailto = envConfig.postmark.emailto;
+const emailfrom = envConfig.postmark.emailfrom;
 const client = new postmark.Client(postmarktoken);
 
 const db = Datastore.create({
