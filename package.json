@@ -16,10 +16,10 @@
   "author": "Brett Slaski",
   "license": "MIT",
   "dependencies": {
-    "debug": "^4.3.3",
-    "dotenv": "^16.0.0",
-    "nedb-promises": "^5.0.3",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "nedb-promises": "^6.2.1",
     "node-fetch": "^2.6.7",
-    "postmark": "^2.9.5"
+    "postmark": "^3.0.14"
   }
 }

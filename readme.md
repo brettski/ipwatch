@@ -39,7 +39,6 @@ Thank you to these projects for their great work! I appreciate you.
 - [node-fetch](https://www.npmjs.com/package/node-fetch)
 - [debug](https://www.npmjs.com/package/debug)
 - [dotenv](https://www.npmjs.com/package/dotenv)
-- [moment](https://www.npmjs.com/package/moment)
 - [nedb](https://www.npmjs.com/package/nedb) & [nedb-promises](https://www.npmjs.com/package/nedb-promises)
 - [postmark](https://postmarkapp.com), [node client lib](https://www.npmjs.com/package/postmark)
 
