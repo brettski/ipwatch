@@ -4,6 +4,7 @@ function configMissing(configSetting) {
 
 const envConfig = () => ({
   endpoint: process.env.ENDPOINT_CHK || configMissing('ENDPOINT_CHK'),
+  testLocation: process.env.TEST_LOCATION || 'Test Location',
   postmark: {
     token: process.env.POSTMARK_TOKEN || POSTMARK_TOKEN,
     emailto: process.env.EMAIL_TO || configMissing('EMAIL_TO'),
