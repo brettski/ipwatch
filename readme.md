@@ -64,8 +64,22 @@ EMAIL_FROM=
 
 I have this running on my home Synology using a scheduled task to execute the node file. It does the job.
 
+## CloudFlare Updates
+
+By getting a CloudFlare API token for your account update the domain and verify when the isp domain changes.
+
+```sh
+# CloudFlare Zone Updates
+CF_BEARER_TOKEN=
+CF_ZONE_DOMAIN=
+CF_DNS_RECORD_DOMAIN=
+```
+
+`CF_BEARER_TOKEN` The API token from your CloudFlare account at [https://dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens).  
+`CF_ZONE_DOMAIN` is the domain of the zone we're updating. NOT the full domain name. Add something like, `brettski.com` not `house.brettski.com`.  
+`CF+DNS_RECORD_DOMAIN` is the full domain we are updating with the new IP address.
+Yes, naming is hard.
+
 ## In Use
 
 So earlier this our ISP sent a 'reset' code to fix something. It changed the IP being used and an email was sent as hoped. 😅 We were able to change DNS references to keep cross location services running.
-
-Perhaps a next version can update the DNS record in Cloudflare with the changed IP value. 🤔
