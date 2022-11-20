@@ -1,8 +1,11 @@
 {
   "name": "ipwatch",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A script to alert when IP changes",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -19,7 +22,10 @@
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",
     "nedb-promises": "^6.2.1",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "~2.6.7",
     "postmark": "^3.0.14"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0"
   }
 }
