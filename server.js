@@ -4,13 +4,14 @@ const fetch = require('node-fetch');
 const postmark = require('postmark');
 const debug = require('debug');
 const envConfig = require('./envConfig');
+const { cloudFlare, validateDns } = require('./lib/cloudFlare');
 
 const dlog = debug('brettski:ipwatch');
 
 const { endpoint, testLocation, updateOnChange } = envConfig;
 const postmarktoken = envConfig.postmark.token;
 const emailto = envConfig.postmark.emailto;
-const { zoneDomain, recordDomain } = envConfig.CloudFlare;
+const { zoneDomain, recordHostname } = envConfig.CloudFlare;
 const emailfrom = envConfig.postmark.emailfrom;
 const client = new postmark.Client(postmarktoken);
 
@@ -28,7 +29,7 @@ fetch(endpoint)
       curip = response['x-forwarded-for'];
       db.findOne({
         ip: curip,
-      }).then(result => {
+      }).then(async result => {
         if (result) {
           dlog('found ip %s; seen: %d times.', curip, result.seen);
           db.update(
@@ -40,7 +41,7 @@ fetch(endpoint)
                 seen: (result.seen += 1),
               },
             },
-          ).then(up => console.log('upper', up));
+          ).then(up => console.log('db update', up));
         } else {
           // new IP address
           // send email and add to database
@@ -48,14 +49,36 @@ fetch(endpoint)
           let body = `A new IP address has been discoved at ${testLocation}, ${curip}`;
           if (
             zoneDomain !== null &&
-            recordDomain !== null &&
+            recordHostname !== null &&
             updateOnChange === true
           ) {
             // update ip in CloudFlare, get result add to message body
+            const cf = await cloudFlare();
+            const {id: zoneId} = await cf.getZoneId(zoneDomain);
+            const dnsRecord = await cf.getDnsRecordId(zoneId, recordHostname);
+            dlog('dnsRecord: %o', dnsRecord);
+            const { id: dnsRecordId } = dnsRecord;
+            const updateStatus = await cf.updateDnsRecordIp({
+              zoneId,
+              dnsRecordId,
+              newIp: curip,
+            });
+            // updated, probably check status here
+            dlog('update ip status', updateStatus);
+            // validate new dns record.
+            const isNewIpSet = validateDns(recordHostname, curip);
+            if (isNewIpSet) {
+              body += '\n\n IP successfully updated at CloudFlare';
+            } else {
+              body +=
+                '\n\n IP DNS validation check came back false. Manually validate new IP is set in DNS';
+            }
           } else {
             body +=
               '\n\n**DNS NOT updated**. Updates are disabled or not configured. The new IP will need to be updated manually.';
           }
+          // yeah this is a Promise, but we don't care about the result so waiting
+          // for a response from the service doesn't matter.
           client.sendEmail({
             From: emailfrom,
             To: emailto,
@@ -66,7 +89,10 @@ fetch(endpoint)
             timestamp: new Date().toISOString(),
             ip: response['x-forwarded-for'],
             seen: 1,
-          }).then(d => dlog('insterted %o', d));
+          }).then(d => {
+            dlog('insterted %o', d);
+            console.log('inserted db', d);
+          });
         }
       });
     } else {

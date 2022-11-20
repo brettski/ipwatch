@@ -2,7 +2,10 @@
   "name": "ipwatch",
   "version": "3.0.0",
   "description": "A script to alert when IP changes",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "node": ">=12"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
