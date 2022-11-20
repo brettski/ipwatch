@@ -5,7 +5,7 @@
 ![hello](https://img.shields.io/badge/hi-👋-lightgray)
 
 
-ipWatch keeps an eye on my external IP. If it changes then an alert is sent and optionally update CloudFlare DNS.
+ipWatch keeps an eye on my external IP. If it changes then sends an email alert and optionally update CloudFlare DNS.
 
 All pretty basic really.
 
