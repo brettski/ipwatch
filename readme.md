@@ -6,4 +6,4 @@ ipWatch was originally built as a nodejs application. For practice it has been r
 
 [nodejs version](./nodejs/readme.md)
 
-[rust version](./rust/.readme.md)
+[rust version](./rust/)
