@@ -1,0 +1,9 @@
+# dotenv environment variables file
+.env
+.env.test
+
+# mac file
+.DS_Store
+
+# nedb data
+db.data
