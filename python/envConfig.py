@@ -13,8 +13,8 @@ def load_config():
     'update_on_change': json.loads(os.getenv('UPDATE_ON_CHANGE')) or False,
     'postmark': {
       'token': os.getenv("POSTMARK_TOKEN") or configMissing("POSTMARK_TOKEN"),
-      'emailto': os.getenv("EMAIL_TO") or configMissing("EMAIL_TO"),
-      'emailfrom': os.getenv("EMAIL_FROM") or configMissing("EMAIL_FROM"), 
+      'email_to': os.getenv("EMAIL_TO") or configMissing("EMAIL_TO"),
+      'email_from': os.getenv("EMAIL_FROM") or configMissing("EMAIL_FROM"), 
     }
   }
 
