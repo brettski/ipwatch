@@ -47,7 +47,7 @@ EMAIL_FROM=
 
 **Notice** CloudFlare update not supported in Python version yet.
 
-`ipwatch.py` is the main file.
+`ipwatch.py` is the main file.cd
 
 **TO DO**: write python/pip installation instructions.  
 
