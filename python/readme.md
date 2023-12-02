@@ -12,6 +12,14 @@ All pretty basic really.
 
 There are two pieces for ipWatch. The ipWatch app and a server (simple cloud function) to send requests to for getting the current IP address.
 
+## Command Line Commands
+
+Let's build some command line options. Here are some thoughts
+
+- run the test (ip check)
+- list current ip from db
+- list all ip from db
+
 ## Notice
 
 See [nodejs readme](../nodejs/readme.md) for setting up remote function.
@@ -43,4 +51,6 @@ EMAIL_FROM=
 
 **TO DO**: write python/pip installation instructions.  
 
-For now you at least need to do `pip install -r ./requirements.txt`.
+First setup a [venv](https://docs.python.org/3/library/venv.html) to run things in
+
+then, you at least need to do `pip install -r ./requirements.txt`.
