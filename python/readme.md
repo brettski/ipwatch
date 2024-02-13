@@ -3,7 +3,7 @@
 The python version of ipWatch.
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue)
-![python](https://img.shields.io/badge/nodejs->=3.9-3776AB)
+![python](https://img.shields.io/badge/python->=3.9-3776AB)
 ![hello](https://img.shields.io/badge/hi-👋-lightgray)
 
 ipWatch keeps an eye on my external IP. If it changes then sends an email alert and optionally update CloudFlare DNS.

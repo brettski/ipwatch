@@ -18,7 +18,7 @@ use -h for help menus
 
 ## Notice
 
-Hopefully future me has provided compiled executables for the latest version
+See [nodejs readme](../nodejs/readme.md) for setting up remote function.
 
 ## THANK YOU
 
