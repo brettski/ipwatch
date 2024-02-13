@@ -1,6 +1,6 @@
-# ipWatch (python)
+# ipWatch (golang)
 
-The python version of ipWatch.
+The Golang version of ipWatch.
 
 ![version](https://img.shields.io/badge/version-0.1.0-lightblue)
 ![golang](https://img.shields.io/badge/golang-%3E=1.22-lightblue)
