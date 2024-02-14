@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -8,25 +8,25 @@ import (
 	dotenv "github.com/joho/godotenv"
 )
 
-type envConfig struct {
-	checkEndpoint string
-	postmark      envPostmark
+type IpWatchConfig struct {
+	CheckEndpoint string
+	Postmark      envPostmark
 }
 
 type envPostmark struct {
-	token        string
-	emailTo      string
-	emailFrom    string
-	testLocation string
+	Token        string
+	EmailTo      string
+	EmailFrom    string
+	TestLocation string
 }
 
-func getEnvConfig() envConfig {
+func GetConfig() IpWatchConfig {
 	err := dotenv.Load(".env")
 	if err != nil {
 		log.Fatalf("Error loading .env file. Err: %s", err)
 	}
-	config := envConfig{}
-	config.checkEndpoint = getEnvValue("ENDPOINT_CHK", true)
+	config := IpWatchConfig{}
+	config.CheckEndpoint = getEnvValue("ENDPOINT_CHK", true)
 
 	return config
 }
@@ -41,6 +41,6 @@ func getEnvValue(envVar string, isRequired bool) string {
 	return value
 }
 
-func dumpConfigToStdOut() {
-	fmt.Printf("%+v", getEnvConfig())
+func DumpConfigToStdOut() {
+	fmt.Printf("ipwatch current config:\n%+v\n", GetConfig())
 }

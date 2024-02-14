@@ -21,30 +21,4 @@ func main() {
 
 	// config := getEnvConfig()
 
-	// fmt.Printf("%+v", config)
-	// ip := net.ParseIP("192.168.1.1")
-	// db := datastore.OpenDb()
-	// defer db.Close()
-
-	// err := db.Update(func(tx *bolt.Tx) error {
-	// 	bucket, err := tx.CreateBucketIfNotExists([]byte("test"))
-	// 	if err != nil {
-	// 		return err
-	// 	}
-
-	// 	err = bucket.Put(ip, []byte("Some json data"))
-
-	// 	return err
-	// })
-
-	// err = db.View(func(tx *bolt.Tx) error {
-	// 	bucket := tx.Bucket([]byte("test"))
-	// 	value := bucket.Get(ip)
-	// 	fmt.Printf("value: %+v\n", string(value))
-	// 	return nil
-	// })
-
-	// if err != nil {
-	// 	panic(err)
-	// }
 }

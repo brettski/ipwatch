@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/brettski/go-ipwatch/config"
 	cli "github.com/jawher/mow.cli"
 )
 
@@ -9,5 +10,5 @@ func cmdConfigActions(cmd *cli.Cmd) {
 }
 
 func cmdDumpConfig(cmd *cli.Cmd) {
-	cmd.Action = dumpConfigToStdOut
+	cmd.Action = config.DumpConfigToStdOut
 }
