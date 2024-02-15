@@ -22,6 +22,21 @@ func fullCheck() {
 	log.Printf("Retrieved IP: %s", foundIp)
 
 	// next step database
-	db := datastore.OpenDb()
-	defer db.Close()
+	ipExists := datastore.IsIpInStore(foundIp)
+	if ipExists {
+		// update datastore as seen
+		seen, err := datastore.IncrementSeen(foundIp)
+		if err != nil {
+			log.Fatalf("Error incrementing record: %s", err)
+		}
+		log.Printf("IP %s has now been seen %d times", foundIp, seen)
+	} else {
+		// Create new record, send email, whatever else
+		err := datastore.AddNew(foundIp)
+		if err != nil {
+			log.Fatalf("Error adding new record: %s", err)
+		}
+		// TODO: Send email
+		log.Printf("IP %s new record added", foundIp)
+	}
 }
