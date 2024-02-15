@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/brettski/go-ipwatch/datastore"
+	"github.com/brettski/go-ipwatch/emailer"
 	"github.com/brettski/go-ipwatch/watcher"
 	cli "github.com/jawher/mow.cli"
 )
@@ -37,7 +38,8 @@ func fullCheck(isVerbose bool) {
 		if err != nil {
 			log.Fatalf("Error adding new record: %s", err)
 		}
-		// TODO: Send email
+
+		emailer.SendIpChangeEmail(foundIp, isVerbose)
 		log.Printf("IP %s new record added", foundIp)
 	}
 }

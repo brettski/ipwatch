@@ -19,6 +19,7 @@ func main() {
 
 	app.Run(os.Args)
 
-	// config := getEnvConfig()
+	//config := config.GetConfig()
+	//fmt.Printf("validate: %v", config.ValidatePostmark())
 
 }
