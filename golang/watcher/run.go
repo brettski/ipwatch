@@ -20,11 +20,16 @@ type WatcherEndpoint struct {
 }
 
 var appConfig config.IpWatchConfig
+var isVerbose bool = false
 
-func RunIpWatcherCheck() (net.IP, error) {
+func RunIpWatcherCheck(verbose bool) (net.IP, error) {
+	isVerbose = verbose
 	appConfig = config.GetConfig()
 	if appConfig.CheckEndpoint == "" {
 		return nil, errors.New("config.CheckEndpoint not set, unable to continue")
+	}
+	if isVerbose {
+		log.Printf("Configured endpoint: %s\n", appConfig.CheckEndpoint)
 	}
 	watcherResult, err := callWatcherEndpoint()
 	if err != nil {
@@ -41,19 +46,19 @@ func RunIpWatcherCheck() (net.IP, error) {
 // get endpoint and parse body
 func callWatcherEndpoint() (WatcherEndpoint, error) {
 	req, err := http.NewRequest(http.MethodGet, appConfig.CheckEndpoint, nil)
-	if err != nil {
-		//log.Fatalf("Error call NewRequest: %v", err)
+	if err != nil { //log.Fatalf("Error call NewRequest: %v", err)
 		return WatcherEndpoint{}, fmt.Errorf("Error call NewRequest: %w", err)
 	}
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		// log.Fatalf("Error call Do: %v", err)
 		return WatcherEndpoint{}, fmt.Errorf("Error call Do: %w", err)
 
 	}
 
-	// log.Printf("%+v\n\n", res)
+	if isVerbose {
+		log.Printf("Response struct: %+v\n", res)
+	}
 	resBody, err := io.ReadAll(res.Body)
 
 	if err != nil {
@@ -61,11 +66,15 @@ func callWatcherEndpoint() (WatcherEndpoint, error) {
 		return WatcherEndpoint{}, fmt.Errorf("Error reading resBody: %w", err)
 	}
 	defer res.Body.Close()
-	// log.Printf("%s\n\n", resBody)
+	if isVerbose {
+		log.Printf("Parsed response body: %s\n", resBody)
+	}
 
 	var newWatcherEndpoint WatcherEndpoint
 	err = json.Unmarshal(resBody, &newWatcherEndpoint)
-	log.Printf("object: %+v\n\n", newWatcherEndpoint)
+	if isVerbose {
+		log.Printf("WatcherEndpoint struct: %+v\n\n", newWatcherEndpoint)
+	}
 
 	return newWatcherEndpoint, nil
 }

@@ -9,11 +9,12 @@ import (
 )
 
 func cmdRun(cmd *cli.Cmd) {
-	cmd.Action = fullCheck
+	verbose := cmd.BoolOpt("v verbose", false, "Show verbose  progress on stdout")
+	cmd.Action = func() { fullCheck(*verbose) }
 }
 
-func fullCheck() {
-	foundIp, err := watcher.RunIpWatcherCheck()
+func fullCheck(isVerbose bool) {
+	foundIp, err := watcher.RunIpWatcherCheck(isVerbose)
 	if err != nil {
 		// log for now
 		log.Fatalf("Error running watcher: %s", err)
