@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+go-ipwatch
 
 # Test binary, built with `go test -c`
 *.test
@@ -19,3 +20,6 @@ go.work
 
 # Configurations
 .env
+
+# Datafile
+boltdb.data
