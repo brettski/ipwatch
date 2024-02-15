@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/brettski/go-ipwatch/datastore"
 	"github.com/brettski/go-ipwatch/watcher"
 	cli "github.com/jawher/mow.cli"
 )
@@ -21,4 +22,6 @@ func fullCheck() {
 	log.Printf("Retrieved IP: %s", foundIp)
 
 	// next step database
+	db := datastore.OpenDb()
+	defer db.Close()
 }
