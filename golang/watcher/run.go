@@ -38,10 +38,9 @@ func RunIpWatcherCheck() (net.IP, error) {
 	return ip, nil
 }
 
+// get endpoint and parse body
 func callWatcherEndpoint() (WatcherEndpoint, error) {
-	const END_POINT = "https://us-central1-brettskicom.cloudfunctions.net/HeaderDump"
-
-	req, err := http.NewRequest(http.MethodGet, END_POINT, nil)
+	req, err := http.NewRequest(http.MethodGet, appConfig.CheckEndpoint, nil)
 	if err != nil {
 		//log.Fatalf("Error call NewRequest: %v", err)
 		return WatcherEndpoint{}, fmt.Errorf("Error call NewRequest: %w", err)
