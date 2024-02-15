@@ -20,7 +20,7 @@ Let's build some command line options. Here are some thoughts
 - list current ip from db
 - list all ip from db
 
-## Notice
+## Remote Function
 
 See [nodejs readme](../nodejs/readme.md) for setting up remote function.
 
@@ -35,7 +35,7 @@ Thank you to these projects for their great work! I appreciate you.
 
 ## Installation
 
-In a nutshell it's all manual. A little embarrassing seeing that I have spent much of my career automating all the things.
+Set the following environment variables by using a shell script or a .env file. There is a sample (.env.sample) as a reference.
 
 ```sh
 ENDPOINT_CHK=https://example.com

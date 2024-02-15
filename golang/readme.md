@@ -2,8 +2,8 @@
 
 The Golang version of ipWatch.
 
-![version](https://img.shields.io/badge/version-0.1.0-lightblue)
-![golang](https://img.shields.io/badge/golang-%3E=1.22-lightblue)
+![version](https://img.shields.io/badge/version-1.0.0-lightblue)
+![golang](https://img.shields.io/badge/golang-%3E=1.20-lightblue)
 ![hello](https://img.shields.io/badge/hi-👋-lightgray)
 
 ipWatch keeps an eye on my external IP. If it changes then sends an email alert and optionally update CloudFlare DNS.
@@ -16,7 +16,7 @@ There are two pieces for ipWatch. The ipWatch app and a server (simple cloud fun
 
 use -h for help menus
 
-## Notice
+## Remote Function
 
 See [nodejs readme](../nodejs/readme.md) for setting up remote function.
 
@@ -24,12 +24,14 @@ See [nodejs readme](../nodejs/readme.md) for setting up remote function.
 
 Thank you to these projects for their great work! I appreciate you.
 
-- TBD
 <!-- - [requests](https://requests.readthedocs.io/en/latest/) -->
+- [mow.cli](https://github.com/jawher/mow.cli)  
+- [godotenv](https://github.com/joho/godotenv)  
+- [bbolt](https://go.etcd.io/bbolt)  
 
 ## Installation
 
-In a nutshell it's all manual. A little embarrassing seeing that I have spent much of my career automating all the things.
+Set the following environment variables by using a shell script or a .env file. There is a sample (.env.sample) as a reference.
 
 ```sh
 ENDPOINT_CHK=https://example.com
@@ -38,6 +40,6 @@ EMAIL_TO=
 EMAIL_FROM=
 ```
 
-**Notice** CloudFlare update not supported in Golang version yet.
+**Notice** CloudFlare update not supported in Golang version, yet.
 
 There will be executables for macOS, Linux (Flavors TBD), and 64-bit Windows

@@ -1,15 +1,15 @@
 # ipwatch
 
-![version](https://img.shields.io/badge/version-3.0.0-blue) 
-![nodejs](https://img.shields.io/badge/nodejs->=12-darkgreen) 
-![hello](https://img.shields.io/badge/hi-👋-lightgray)
-
+![version](https://img.shields.io/badge/version-3.0.0-blue)  
+![nodejs](https://img.shields.io/badge/nodejs->=12-darkgreen)  
+![hello](https://img.shields.io/badge/hi-👋-lightgray)  
 
 ipWatch keeps an eye on my external IP. If it changes then sends an email alert and optionally update CloudFlare DNS.
 
 All pretty basic really.
 
 There are two pieces for ipWatch. The ipWatch app and a server (simple cloud function) to send requests to for getting the current IP address.
+
 ## The GCP function
 
 This simple function is set up in GCP and pointed to by the server.js script. It returns the server headers as a json object.
