@@ -1,6 +1,6 @@
 {
   "name": "ipwatch",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A script to alert when IP changes",
   "main": "server.js",
   "engines": {
