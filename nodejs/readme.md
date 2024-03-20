@@ -1,6 +1,6 @@
 # ipwatch
 
-![version](https://img.shields.io/badge/version-3.0.0-blue)  
+![version](https://img.shields.io/badge/version-3.1.0-blue)  
 ![nodejs](https://img.shields.io/badge/nodejs->=12-darkgreen)  
 ![hello](https://img.shields.io/badge/hi-👋-lightgray)  
 
@@ -76,7 +76,7 @@ CF_ZONE_DOMAIN=
 CF_DNS_RECORD_HOSTNAME=
 ```
 
-`ENDPOINT_CHK` is the endpoint of the function code. There is no file for the function at this time as it's really straight forward. Simply copy `GCP Function` listed above into a gcp function, Azure function etc. CloudFlare workers can't be used for this as they don't expose client IP's (the call it real client IPs) unless you have an enterprise account. And well I'm not an enterprise with enterprise pockets. 
+`ENDPOINT_CHK` is the endpoint of the function code. There is no file for the function at this time as it's really straight forward. Simply copy `GCP Function` listed above into a gcp function, Azure function etc. CloudFlare workers can't be used for this as they don't expose client IP's (the call it real client IPs) unless you have an enterprise account. And well I'm not an enterprise with enterprise pockets.
 
 `server.js` can be run anywhere there is node 12+ and write access to it's folder for the db file. This needs to run from somewhere within your network, calling out to the internet so the function can relay back your IP for recording.
 
