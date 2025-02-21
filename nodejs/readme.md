@@ -29,9 +29,30 @@ exports.headerDump = (req, res) => {
 };
 ```
 
+## Using Cloudflare Workers
+
+I discovered recently that Cloudflare will provide a request IP header value on the free plan. Good news for our little app here. Here's a worker script that will work with ipWatch.
+
+```js
+var worker_default = {
+  async fetch(request, env, ctx) {
+    const ipHeaderValue = 'cf-connecting-ip';
+    const output = {
+      stamp: new Date(),
+      'x-real-ip': request.headers.get('x-real-ip'),
+      'x-forwarded-for': request.headers.get(ipHeaderValue),
+    }
+    return Response.json(output);
+  }
+};
+export {
+  worker_default as default
+};
+```
+
 ## JavaScript Function
 
-On each run, the function looks at data from the endpoint and searches for the `x-forwarded-for` header value in the database.
+On each run, the function examines data from the endpoint and searches the database for the `x-forwarded-for` header value.
 
 - if found, add one to seen count
 - if not found, send email and add new record.
